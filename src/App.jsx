@@ -1,4 +1,3 @@
-/* eslint-disable prettier/prettier */
 import { useState } from 'react';
 import cn from 'classnames';
 
@@ -20,7 +19,6 @@ export const goodsFromServer = [
 
 const SORT_BY_ALPHABET = 'A';
 const SORT_BY_LENGTH = 'Length';
-
 
 const areArraysEqual = (a, b) => {
   return a.length === b.length && a.every((val, index) => val === b[index]);
@@ -49,12 +47,13 @@ function getPreparedGoods(goods, { sortBy, isReversed }) {
   return preparedGoods;
 }
 
-
 export const App = () => {
   const [sortBy, setSortBy] = useState('');
   const [isReversed, setIsReversed] = useState(false);
-  // eslint-disable-next-line max-len
-  const visibleGoods = getPreparedGoods(goodsFromServer, { sortBy, isReversed });
+  const visibleGoods = getPreparedGoods(goodsFromServer, {
+    sortBy,
+    isReversed,
+  });
 
   return (
     <div className="section content">
@@ -87,7 +86,7 @@ export const App = () => {
         >
           Reverse
         </button>
-        {!areArraysEqual(visibleGoods, goodsFromServer) ?
+        {!areArraysEqual(visibleGoods, goodsFromServer) && (
           <button
             type="button"
             onClick={() => setSortBy('')}
@@ -95,8 +94,7 @@ export const App = () => {
           >
             Reset
           </button>
-          : null
-        }
+        )}
       </div>
 
       <ul>
