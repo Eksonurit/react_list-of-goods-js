@@ -89,7 +89,10 @@ export const App = () => {
         {!areArraysEqual(visibleGoods, goodsFromServer) && (
           <button
             type="button"
-            onClick={() => setSortBy('')}
+            onClick={() => {
+              setSortBy('');
+              setIsReversed(false);
+            }}
             className="button is-danger is-light"
           >
             Reset
@@ -99,7 +102,9 @@ export const App = () => {
 
       <ul>
         {visibleGoods.map(good => (
-          <li key={good}>{good}</li>
+          <li key={good} data-cy="Good">
+            {good}
+          </li>
         ))}
       </ul>
     </div>
